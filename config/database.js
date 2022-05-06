@@ -3,9 +3,10 @@ mongoose.Promise = global.Promise;
 
 require('dotenv').config();
 const MONGO_URL = process.env.MONGO_URL;
-mongoose.connect(MONGO_URL, { 
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-
-}).then(() =>  console.log('connection succesful'))
-  .catch((err) => console.error(err));
+  mongoose.connect(URI, {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+ }, err => {
+    if(err) throw err;
+    console.log('Connected to MongoDB!!!')
+ })
