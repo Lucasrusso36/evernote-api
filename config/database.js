@@ -1,15 +1,13 @@
-import mongoose from 'mongoose'
-import dotenv from 'dotenv'
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 
-dotenv.config()
+require('dotenv').config();
+const MONGO_URL = process.env.MONGO_URL;
+mongoose.connect(MONGO_URL, { 
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 
-mongoose.Promise = global.Promise
+}).then(() =>  console.log('connection succesful'))
+  .catch((err) => console.error(err));
 
-mongoose
-    .connect(process.env.MONGO_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        useCreateIndex: true,
-    })
-    .then(() => console.log('Connection succesful'))
-    .catch((err) => console.log(err))
+  
